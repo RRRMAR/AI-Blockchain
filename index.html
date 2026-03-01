@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodBoy IoT Monitor - Laris Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="pulse-ring"></div>
+                <h1>FloodBoy Network</h1>
+            </div>
+            <p class="subtitle">Real-time IoT-Powered Blockchain Monitoring</p>
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span id="connection-status">Connecting to Blockchain...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="sensor-info glass-panel">
+                <h2>Sensor: <span class="highlight">FloodBoy001</span></h2>
+                <p>Location: <span id="location">Loading...</span></p>
+                <p>Last Updated: <span id="last-updated">Waiting for data...</span></p>
+            </div>
+
+            <div id="error-message" class="error-panel glass-panel hidden">
+                <p>⚠️ Unable to fetch real-time data from the blockchain network.</p>
+                <p class="error-detail">Currently displaying cached or simulated data to demonstrate the UI.</p>
+                <button id="retry-btn">Retry Connection</button>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Water Depth Panel -->
+                <div class="data-card glass-panel water-card">
+                    <div class="card-icon">🌊</div>
+                    <h3>Water Level</h3>
+                    <div class="primary-value"><span id="water-current">--</span> cm</div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-label">Min</span>
+                            <span class="stat-value" id="water-min">--</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Max</span>
+                            <span class="stat-value" id="water-max">--</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="water-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Battery Panel -->
+                <div class="data-card glass-panel battery-card">
+                    <div class="card-icon">🔋</div>
+                    <h3>Battery Voltage</h3>
+                    <div class="primary-value"><span id="battery-current">--</span> V</div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-label">Min</span>
+                            <span class="stat-value" id="battery-min">--</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Max</span>
+                            <span class="stat-value" id="battery-max">--</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="battery-progress" style="width: 0%; background-color: var(--success-color);"></div>
+                    </div>
+                </div>
+                
+                <!-- System Diagnostics Panel -->
+                <div class="data-card glass-panel system-card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>System Data</h3>
+                    <div class="system-stats">
+                        <div class="sys-row">
+                            <span>Readings Count:</span>
+                            <span id="data-count" class="sys-val">--</span>
+                        </div>
+                        <!-- Add more fields if the API provides -->
+                        <div class="sys-row">
+                            <span>Network:</span>
+                            <span class="sys-val highlight">Stable</span>
+                        </div>
+                        <div class="sys-row">
+                            <span>Encryption:</span>
+                            <span class="sys-val highlight">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="raw-data-section glass-panel">
+                 <div class="section-header">
+                     <h3>Raw Blockchain Output</h3>
+                     <button id="toggle-raw">Show JSON</button>
+                 </div>
+                 <pre id="raw-json" class="hidden"></pre>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Built with ❤️ by Laris Labs & Tonbun</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
